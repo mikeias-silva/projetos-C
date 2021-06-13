@@ -1,0 +1,19 @@
+Segundo Exemplo: leitura de um vetor de números, com tamanho informado pelo u-
+suário e determinação do menor elemento:
+#define TAM 100
+main ()
+{
+int vetor[TAM];
+int cont, tamanho, menor;
+printf("\nDigite o numero de elementos do vetor (max=%d): ",TAM);
+scanf("%d", &tamanho);
+printf("\nDigite os elementos do vetor: \n");
+for (cont=0; cont<tamanho; cont++)
+scanf("%d",&vetor[cont]);
+menor = vetor[0];
+for (cont=1; cont<tamanho; cont++)
+if(vetor[cont]<menor)
+menor=vetor[cont];
+printf("\nMenor elemento= %d", menor);
+getch();
+}

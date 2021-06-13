@@ -1,0 +1,1276 @@
+
+<!-- saved from url=(0052)https://www.cos.ufrj.br/~rfarias/cos121/aula_09.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Estrutura de Dados e Algoritmos</title>
+</head>
+
+<body bgcolor="#ffffff"> 
+
+<font color="#0000ff"> 
+
+<br>
+
+<p align="center"><b>
+</b></p><h3><b>COS-121</b></h3><b>
+<h2>Estrutura de Dados e Algoritmos</h2>
+<h3>2º Semestre de 2014</h3></b>
+
+<!-- Remark-->
+<a href="mailto:rfarias@gmail.com?subject=Estrutura%20de%20Dados%20e%20Algoritmos">
+Professor Ricardo Farias
+</a>
+
+<p></p>
+
+
+<!-- Remark ######################################## -->
+<!-- Remark ######################################## -->
+<!-- Remark ######################################## -->
+<!-- Remark ######################################## -->
+<!-- Remark ######################################## -->
+<hr width="100%" size="4">
+
+<p><b></b></p><h2><b>Aula 09</b></h2><p></p>
+
+
+<!-- Remark ######################################## -->
+<hr width="100%" size="4">
+
+<b>Tópicos desta aula.</b>
+<br>
+<br>
+Linguagem C
+<br>
+<br>
+<dfn>Ordenação dos Elementos de um Vetor</dfn><br><br>
+
+<hr align="left" width="30%">
+
+<br><dfn>Heap Sort</dfn><br><br>
+O heapsort utiliza uma estrutura de dados chamada heap binário para ordenar os elementos a medida que os insere na estrutura. Assim, ao final das inserções, os elementos podem ser sucessivamente removidos da raiz da heap, na ordem desejada.
+<p>
+Um heap binário é uma árvore binária mantida na forma de um vetor.
+</p><p>
+
+</p><center>
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+			<tbody><tr>
+				<td width="30" align="center"> <tt>0</tt>
+				</td><td width="30" align="center"> <tt>1</tt>
+				</td><td width="30" align="center"> <tt>2</tt>
+				</td><td width="30" align="center"> <tt>3</tt>
+				</td><td width="30" align="center"> <tt>4</tt>
+				</td><td width="30" align="center"> <tt>5</tt>
+				</td><td width="30" align="center"> <tt>6</tt>
+			 
+			 </td></tr><tr>
+				<td bgcolor="cyan" align="center">40
+				</td><td bgcolor="cyan" align="center">90
+				</td><td bgcolor="cyan" align="center">20
+				</td><td bgcolor="cyan" align="center">10
+				</td><td bgcolor="cyan" align="center">50
+				</td><td bgcolor="cyan" align="center">70
+				</td><td bgcolor="cyan" align="center">80
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap01.png">
+		</td>
+	</tr>
+</tbody></table>
+</center>
+<p>
+O heap é gerado e mantido no próprio vetor a ser ordenado.
+</p><p>
+Para uma ordenação crescente, deve ser construído um heap máximo (o maior elemento fica na raiz). Para uma ordenação decrescente, deve ser construído um heap mínimo (o menor elemento fica na raiz).
+</p><p>
+Veja o exemplo:
+</p><p>
+Observe a figura: As subárvores são analisadas e o maior elemento da subárvore é colocado na raiz. 
+</p><p>
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">90
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="red" align="center">80
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap02.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap03.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+			<tbody><tr>
+				<td width="30" align="center"> <tt>0</tt>
+				</td><td width="30" align="center"> <tt>1</tt>
+				</td><td width="30" align="center"> <tt>2</tt>
+				</td><td width="30" align="center"> <tt>3</tt>
+				</td><td width="30" align="center"> <tt>4</tt>
+				</td><td width="30" align="center"> <tt>5</tt>
+				</td><td width="30" align="center"> <tt>6</tt>
+			 
+			 </td></tr><tr>
+				<td bgcolor="cyan" align="center">40
+				</td><td bgcolor="cyan" align="center">90
+				</td><td bgcolor="red" align="center">80
+				</td><td bgcolor="cyan" align="center">10
+				</td><td bgcolor="cyan" align="center">50
+				</td><td bgcolor="cyan" align="center">70
+				</td><td bgcolor="red" align="center">20
+			 </td></tr></tbody></table>
+		</td>	</tr>
+</tbody></table>
+
+<br>No nível acima.</p><p>
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">40
+					</td><td bgcolor="red" align="center">90
+					</td><td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">20
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap04.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap05.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+			<tbody><tr>
+				<td width="30" align="center"> <tt>0</tt>
+				</td><td width="30" align="center"> <tt>1</tt>
+				</td><td width="30" align="center"> <tt>2</tt>
+				</td><td width="30" align="center"> <tt>3</tt>
+				</td><td width="30" align="center"> <tt>4</tt>
+				</td><td width="30" align="center"> <tt>5</tt>
+				</td><td width="30" align="center"> <tt>6</tt>
+			 
+			 </td></tr><tr>
+				<td bgcolor="red" align="center">90
+				</td><td bgcolor="red" align="center">40
+				</td><td bgcolor="cyan" align="center">80
+				</td><td bgcolor="cyan" align="center">10
+				</td><td bgcolor="cyan" align="center">50
+				</td><td bgcolor="cyan" align="center">70
+				</td><td bgcolor="cyan" align="center">20
+			 </td></tr></tbody></table>
+		</td>	</tr>
+</tbody></table>
+<br>
+
+Quando há troca num nó pai, suas subárvores são analisadas novamente.
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="cyan" align="center">90
+					</td><td bgcolor="red" align="center">40
+					</td><td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="red" align="center">50
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">20
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap06.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap07.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+			<tbody><tr>
+				<td width="30" align="center"> <tt>0</tt>
+				</td><td width="30" align="center"> <tt>1</tt>
+				</td><td width="30" align="center"> <tt>2</tt>
+				</td><td width="30" align="center"> <tt>3</tt>
+				</td><td width="30" align="center"> <tt>4</tt>
+				</td><td width="30" align="center"> <tt>5</tt>
+				</td><td width="30" align="center"> <tt>6</tt>
+			</td></tr>
+			<tr>
+				<td bgcolor="cyan" align="center">90
+				</td><td bgcolor="red" align="center">50
+				</td><td bgcolor="cyan" align="center">80
+				</td><td bgcolor="cyan" align="center">10
+				</td><td bgcolor="red" align="center">40
+				</td><td bgcolor="cyan" align="center">70
+				</td><td bgcolor="cyan" align="center">20
+			</td></tr>
+			</tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<br>
+<br>
+Observe, na figura acima, que cada uma das raízes possui o maior elemento das suas respectivas subárvores. Agora a raiz será trocada com o elemento da última posição.
+<br>
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="yellow" align="center">90
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="yellow" align="center">20
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap08.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap09.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="yellow" align="center">20
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="yellow" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+O resultado é que o maior elemento foi colocado na última posição do vetor:
+</p><center>
+	<table>
+		<tbody><tr><td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				</td></tr>
+				<tr>
+					<td bgcolor="cyan" align="center">20
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="green" align="center">90
+				</td></tr>
+			</tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap10.png">
+		</td>
+
+	</tr></tbody></table>
+</center>
+
+O processo reinicia: os nodos são reavaliados de forma a colocar o maior elemento de cada subárvore na respectva raiz (a última posição fica de fora, agora).
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">80
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap11.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap12.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="red" align="center">80
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+<p>
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="red" align="center">70
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap13.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap14.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="cyan" align="center">80
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">70
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+</p><p>
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="yellow" align="center">80
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="yellow" align="center">20
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap15.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap16.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="yellow" align="center">80
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">70
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="yellow" align="center">20
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+Resultado:
+</p><center><img src="./Estrutura de Dados e Algoritmos_files/heap17.png"></center>
+<p>
+E o processo continua:
+
+<table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">70
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap18.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap19.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="red" align="center">70
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">70
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap20.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap21.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="red" align="center">70
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="red" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+</p><center>
+	<table>
+		<tbody><tr><td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				</td></tr>
+				<tr>
+					<td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">50
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr>
+			</tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap22.png">
+		</td>
+
+	</tr></tbody></table>
+</center>
+<p>
+
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">40
+					</td><td bgcolor="red" align="center">50
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap23.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap24.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="red" align="center">50
+					</td><td bgcolor="red" align="center">40
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="yellow" align="center">50
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="yellow" align="center">10
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap25.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap26.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="yellow" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="yellow" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+</p><center>
+	<table>
+		<tbody><tr><td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				</td></tr>
+				<tr>
+					<td bgcolor="cyan" align="center">10
+					</td><td bgcolor="cyan" align="center">40
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr>
+			</tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap27.png">
+		</td>
+
+	</tr></tbody></table>
+</center>
+<p>
+
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="red" align="center">10
+					</td><td bgcolor="red" align="center">40
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap28.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap29.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="red" align="center">40
+					</td><td bgcolor="red" align="center">10
+					</td><td bgcolor="cyan" align="center">20
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+
+</p><p>
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="yellow" align="center">40
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="yellow" align="center">20
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap30.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap31.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="yellow" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="yellow" align="center">40
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+</p><center>
+	<table>
+		<tbody><tr><td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				</td></tr>
+				<tr>
+					<td bgcolor="cyan" align="center">20
+					</td><td bgcolor="cyan" align="center">10
+					</td><td bgcolor="green" align="center">40
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr>
+			</tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap32.png">
+		</td>
+
+	</tr></tbody></table>
+</center>
+<p>
+
+</p><p><table>
+	<tbody><tr>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 
+				 </td></tr><tr>
+					<td bgcolor="yellow" align="center">20
+					</td><td bgcolor="yellow" align="center">10
+					</td><td bgcolor="green" align="center">40
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+			 </td></tr></tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap33.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap34.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				 </td></tr>
+				 <tr>
+					<td bgcolor="yellow" align="center">10
+					</td><td bgcolor="yellow" align="center">20
+					</td><td bgcolor="green" align="center">40
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr><tr>
+			</tr></tbody></table>
+		</td>
+	</tr>
+</tbody></table>
+</p><p>
+
+</p><center>
+	<table>
+		<tbody><tr><td>
+			<table class="ca" cellspacing="2" cellpadding="2" align="center">
+				<tbody><tr>
+					<td width="30" align="center"> <tt>0</tt>
+					</td><td width="30" align="center"> <tt>1</tt>
+					</td><td width="30" align="center"> <tt>2</tt>
+					</td><td width="30" align="center"> <tt>3</tt>
+					</td><td width="30" align="center"> <tt>4</tt>
+					</td><td width="30" align="center"> <tt>5</tt>
+					</td><td width="30" align="center"> <tt>6</tt>
+				</td></tr>
+				<tr>
+					<td bgcolor="green" align="center">10
+					</td><td bgcolor="green" align="center">20
+					</td><td bgcolor="green" align="center">40
+					</td><td bgcolor="green" align="center">50
+					</td><td bgcolor="green" align="center">70
+					</td><td bgcolor="green" align="center">80
+					</td><td bgcolor="green" align="center">90
+				</td></tr>
+			</tbody></table>
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/seta.png">
+		</td>
+		<td>
+			<img src="./Estrutura de Dados e Algoritmos_files/heap35.png">
+		</td>
+
+	</tr></tbody></table>
+</center>
+<p>
+O processo de ordenação termina!
+</p><p>
+
+Veja o algoritmo a seguir:
+<br>
+
+<code>
+</code></p><pre><code>#include <stdio.h>
+#include <stdlib.h>
+
+void lerVet( int *p, int t ){
+
+	int i;
+
+	for ( i=0; i<t; i++="" ){="" printf("\telemento="" da="" posicao="" %d?="" ",i);="" scanf("%d",p);="" p++;="" }="" void="" mostrarvet(="" int="" *p,="" t="" i;="" for="" (="" i="0;" <="" t;="" printf("\tposicao="" %d:="" %d\n",i,*p);="" heapsort(="" *a,="" n="" )="" {="" pai,="" filho;="" while="" 1="" true="" if=""> 0 ) {
+
+          i--;
+          t = a[i];
+
+      }
+      else {
+
+          n--;
+          if (n == 0)
+             return;
+
+          t = a[n];
+          a[n] = a[0];
+
+      }
+     
+      pai = i;
+      filho = i*2 + 1;
+ 
+      while (filho &lt; n) {
+
+          if (( filho + 1 &lt; n )  &amp;&amp;  ( a[filho + 1] &gt; a[filho] ))
+              filho++;
+
+          if (a[filho] &gt; t) {
+
+             a[pai] = a[filho];
+             pai = filho;
+             filho = pai*2 + 1;
+
+          }
+          else
+             break;
+
+      }
+      a[pai] = t;
+
+   }
+}
+
+
+int main(){
+
+	int *p, tam;
+
+	printf("Quantidade de elementos do vetor? ");
+	scanf("%d",&amp;tam);
+
+	p = (int*) malloc(tam * sizeof(int));
+	
+	printf("\nDigite o conteudo do vetor:\n");
+	lerVet(p, tam);
+
+	printf("\nConteudo digitado para o vetor:\n");
+	mostrarVet(p, tam);
+
+	printf("\nOrdenando o vetor...\n");
+	heapSort(p, tam);
+
+	printf("\nConteudo do vetor ja ordenado:\n");
+	mostrarVet(p, tam);
+
+	free(p);
+
+	return 0;
+
+}
+
+</t;></stdlib.h></stdio.h></code></pre><code>
+</code>
+
+<p>
+
+Que alterações devem ser realizadas no algoritmo para que o vetor seja ordenado decrescentemente?
+
+<br>
+
+<!-- Remark ######################################## -->
+</p><hr width="100%" size="4">
+
+
+<br>
+
+
+
+
+</font></body></html>
