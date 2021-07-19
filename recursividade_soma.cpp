@@ -16,5 +16,5 @@ main(){
   // scanf("%d", &num1);
   // printf("Insira o segundo numero: ");
   // scanf("%d", &num2);
-  printf("%d", recursividade_soma(1, 5));
+  printf("%d", recursividade_soma(10, 20));
 }
