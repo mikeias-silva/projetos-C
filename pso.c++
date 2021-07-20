@@ -185,6 +185,8 @@ float vetor_x[4][4] = {
     {-0.913, 0.970, 915, 1},
 };
 
+float pbest[4][1] = {0};
+
 float gbest = vetor_x[0][0];
 int melhor()
 {
@@ -205,6 +207,51 @@ int melhor()
     }
 
     return gbest;
+}
+
+int f_quad_x()
+{
+
+    float aux[4][4] = {0};
+    float aux_soma[4][4] = {0};
+    float resultado = 99999.9;
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            //ajustar bug
+            aux_soma[i][j] = vetor_x[i][j] + vetor_x[i][j];
+            aux[i][j] = pow(aux_soma[i][j], 2);
+            if (aux[i][j] < resultado)
+            {
+                resultado = aux[i][j];
+            }
+        }
+    }
+    return resultado;
+}
+
+int f_quad_pbest()
+{
+
+    float aux[4][4] = {0};
+    float aux_soma[4][4] = {0};
+    int resultado = 999999;
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            aux_soma[i][j] = pbest[i][0] + pbest[i][0];
+            aux[i][j] = pow(aux_soma[i][j], 2);
+            if (aux[i][j] < resultado)
+            {
+                resultado = aux[i][j];
+            }
+        }
+    }
+    return resultado;
 }
 
 int main()
@@ -243,19 +290,20 @@ int main()
     //     {0,0,0,0},
     //     {0,0,0,0},
     //     {0,0,0,0}};
-    float pbest[4][1] = {0};
 
     pbest[0][0] = vetor_x[0][0];
 
     //atualiza o pbest de casa
     //O pbest é o melhor de cada linha (vetor)
 
+    printf("pbest %d", f_quad_x());
+
     for (int i = 0; i < 4; i++)
     {
         pbest[i][0] = vetor_x[i][0];
         for (int j = 0; j < 4; j++)
         {
-            if (vetor_x[i][j] < pbest[i][0])
+            if (f_quad_x() < f_quad_pbest())
             {
                 pbest[i][0] = vetor_x[i][j];
             }
@@ -274,7 +322,7 @@ int main()
     {
         for (int j = 0; j < 4; j++)
         {
-            vetor_v[i][j] = ((2 * 0,5) * (pbest[i][0] - vetor_x[i][j])) + ((2 * 0,8) * (gbest - vetor_x[i][j]));
+            vetor_v[i][j] = ((2 * 0, 5) * (pbest[i][0] - vetor_x[i][j])) + ((2 * 0, 8) * (gbest - vetor_x[i][j]));
             vetor_x[i][j] = vetor_x[i][j] + vetor_v[i][j];
             // printf("\n aqui vetor x i %d", vetor_x[i][j] + vetor_v[i][j]);
         }
