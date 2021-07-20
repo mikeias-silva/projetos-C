@@ -43,10 +43,10 @@ using namespace std;
 float x[X], v[V], p[P];
 float soma = 0;
 
-int vetor_x()
+int f_vetor_x()
 {
     //Vetor X
-    printf("\n%d Vetores de X com %d elementos cada\n", TAM, X);
+    // printf("\n%d Vetores de X com %d elementos cada\n", TAM, X);
     for (int u = 0; u <= TAM; u++)
     {
         for (int i = 0; i < X; i++)
@@ -91,6 +91,7 @@ int vetor_x()
         //     printf("\nvetor x[%d] posicao t[%.2f]", t, x[t]);
         // }
     }
+    return 0;
 }
 
 int vetor_v()
@@ -115,7 +116,7 @@ int vetor_v()
         //   printf("\nVetor V[%d] gerado: ", u);
         for (int k = 0; k <= V; k++)
         {
-            printf("%.2f ", v[k]);
+            // printf("%.2f ", v[k]);
         }
         //printf("\n\nVetor ao quadrado: ");
         // for (int k = 0; k < V; k++)
@@ -138,7 +139,7 @@ int vetor_v()
 int vetor_p()
 {
     //Vetor P
-    printf("\n\nVetor P");
+    // printf("\n\nVetor P");
     for (int u = 0; u <= TAM; u++)
     {
         for (int i = 0; i < V; i++)
@@ -154,10 +155,10 @@ int vetor_p()
                 p[i] = j;
             }
         }
-        printf("\nVetor P[%d] gerado: ", u);
+        // printf("\nVetor P[%d] gerado: ", u);
         for (int k = 0; k < P; k++)
         {
-            printf("%f ", p[k]);
+            // printf("%f ", p[k]);
         }
         //printf("\n\nVetor ao quadrado: ");
         for (int k = 0; k < P; k++)
@@ -172,14 +173,38 @@ int vetor_p()
             aux = p[m];
             soma += aux;
         }
-        printf("\nSoma do vetor P[%d] ao quadrado %.2f\n", u, soma);
+        // printf("\nSoma do vetor P[%d] ao quadrado %.2f\n", u, soma);
     }
+    return 0;
 }
 
-int funcao(int melhor)
+float vetor_x[4][4] = {
+    {-90, 98, 9.88, 66.4},
+    {-5.95, -84.96, -55, 98},
+    {1.99, 9.10, 44, -912},
+    {-0.913, 0.970, 915, 1},
+};
+
+float gbest = vetor_x[0][0];
+int melhor()
 {
 
-    int resultado = melhor + 1;
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if (vetor_x[i][j] == 0)
+            {
+                gbest = vetor_x[i][j];
+            }
+            else if (vetor_x[i][j] < gbest)
+            {
+                gbest = vetor_x[i][j];
+            }
+        }
+    }
+
+    return gbest;
 }
 
 int main()
@@ -193,127 +218,87 @@ int main()
     // vetor_x();
     // vetor_p();
     // vetor_v();
-    int global_best = 0;
+    // int vetor_v[4][4] = {
+    //     {-55, 2, 3, 4},
+    //     {5, 6, 7, 8},
+    //     {9, 10, 11, 12},
+    //     {13, 14, 15, 16},
+    // };
 
-    int vetor_x[4][4] = {
-        {90, 98, 88, 66},
-        {95, 96, 55, 98},
-        {99, 910, 44, 912},
-        {913, 970, 915, 1},
-    };
-    int vetor_v[4][4] = {
-        {-55, 2, 3, 4},
-        {5, 6, 7, 8},
-        {9, 10, 11, 12},
-        {13, 14, 15, 16},
-    };
+    printf("vetor X antes de atualizar\n");
+    for (int i = 0; i < 4; i++)
+    {
+        printf("vetor_x [%d] - |", i);
+        for (int j = 0; j < 4; j++)
+        {
+            printf(" %.2f ", vetor_x[i][j]);
+        }
+        printf("|\n");
+    }
+
+    int vetor_v[4][4] = {0};
 
     // int pbest [4][4]= {
     //     {0,0,0,0},
     //     {0,0,0,0},
     //     {0,0,0,0},
     //     {0,0,0,0}};
-   
-    int pbest[4][4] = {0};
+    float pbest[4][1] = {0};
+
     pbest[0][0] = vetor_x[0][0];
 
-    printf("\naqui %d", pbest[0][0]);
-   
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     for (int j = 0; j < 4; j++)
-    //     {
-    //         printf("\naqui %d", pbest[i][j]);
-    //     }
-    // }
+    //atualiza o pbest de casa
+    //O pbest é o melhor de cada linha (vetor)
 
-    int vetor_p[4][4] = {0};
+    for (int i = 0; i < 4; i++)
+    {
+        pbest[i][0] = vetor_x[i][0];
+        for (int j = 0; j < 4; j++)
+        {
+            if (vetor_x[i][j] < pbest[i][0])
+            {
+                pbest[i][0] = vetor_x[i][j];
+            }
 
-    //vetor_v();
-    int linha = 2;
-    int coluna = 3;
-    // printf("\ndepois da funcao %d ", vetor_v[linha-1][coluna-1]);
+            if (pbest[i][j] < melhor())
+            {
+                gbest = pbest[i][j];
+            }
+        }
+    }
 
+    //Posicao da particula é por exemplo x linha 0, x linha 1...
+
+    //inicializar o vetor V
     for (int i = 0; i < 4; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-
-            // printf("\nantes troca pbest: %d x: %d", pbest, vetor_x[i][j]);
-            // atualuiza a melhor posicao
-            if (vetor_x[i][j] < pbest[i][j])
-            {
-                pbest[i][j] = vetor_x[i][j];
-                // printf("\ntroca pbest: %d", pbest[i][j]);
-            }
-
-            //atualiza o blobal best
-            if (pbest[i][j] < global_best)
-            {
-                global_best = pbest[i][j];
-            }
-            //printf("\npbest: %d", pbest);
-            // if (funcao(pbest) < funcao(global_best))
-            // {
-            //     global_best = pbest;
-            // }
-        }
-        int j = 0;
-        for (int i = 0; i < 4; i++)
-        {
-            j++;
-            //  printf("\n vetor%d i%d j%d", vetor_v[i][j], i, j);
-            //  vetor_v[i][j] = (vetor_v[i][j] + )
-            vetor_p[i][j] = vetor_x[i][j] + vetor_v[i][j];
-            printf("\nvetor p %d", vetor_p[i][j]);
+            vetor_v[i][j] = ((2 * 0,5) * (pbest[i][0] - vetor_x[i][j])) + ((2 * 0,8) * (gbest - vetor_x[i][j]));
+            vetor_x[i][j] = vetor_x[i][j] + vetor_v[i][j];
+            // printf("\n aqui vetor x i %d", vetor_x[i][j] + vetor_v[i][j]);
         }
     }
 
-    // for (int i = 0; i <= 4; i++)
-    // {
-    //     for (int j = 0; i < 4; i++)
-    //     {
-    //         if (funcao(vetor_x[i][j]) < funcao(pbest))
-    //         {
-    //             pbest = vetor_x[i][j];
-    //         }
-    //         if (funcao(pbest) < funcao(global_best))
-    //         {
-    //             global_best = pbest;
-    //         }
-    //     }
-    // }
+    printf("\n");
+    for (int i = 0; i < 4; i++)
+    {
+        printf("pbest[%d]: %.2f\n", i, pbest[i][0]);
+    }
 
-    // for (int i = 0; i < 4; i++)
-    // {
-    //     for (int j = 0; i < 4; i++)
-    //     {
-    //         // vetor_v[i][j] = vetor_v[i][j] + C1 * 0, 2 * (pbest - vetor_x[i][j] + C2 * 0, 4 * (global_best - vetor_x[i][j]));
-    //         // vetor_x[i][j] = vetor_x[i][j] + vetor_v[i][j];
-    //     }
-    // }
-    // // for (auto &&i : x)
-    // // {
+    printf("\ngbest: %.2f", gbest);
 
-    // //     for (auto &&d : o)
-    // //     {
-    // //         printf("%d", d);
-    // //     }
-
-    // //     //inicializa o vetor de pbest com o primeira posicao do vet_x (Xi)
-    // //     int pos_best[] = {vetor_x[0]};
-
-    // //     if (f(pos_best[0]) < f(global_best))
-    // //     {
-    // //         global_best = pos_best[0];
-    // //     }
-    // ;
-    //     for (auto &&i : vetor_x)
-    //     {
-    //         printf("%d\n", i);
-    //     }
-    //     printf("%d", pos_best[0]);
-    // }
+    printf("\n\n");
+    printf("vetor X DEPOIS de atualizar\n");
+    for (int i = 0; i < 4; i++)
+    {
+        printf("vetor_x [%d] - |", i);
+        for (int j = 0; j < 4; j++)
+        {
+            printf(" %.2f ", vetor_x[i][j]);
+        }
+        printf("|\n");
+    }
 
     return 0;
 }
