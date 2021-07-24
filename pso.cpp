@@ -94,7 +94,7 @@ int f_vetor_x()
     return 0;
 }
 
-int vetor_v()
+int f_vetor_v()
 {
     //Vetor V
     //    printf("\n\nVetor V");
@@ -136,7 +136,7 @@ int vetor_v()
     return 0;
 }
 
-int vetor_p()
+int f_vetor_p()
 {
     //Vetor P
     // printf("\n\nVetor P");
@@ -209,69 +209,85 @@ int melhor()
     return gbest;
 }
 
-int f_quad_x()
+float aux[4][4] = {0};
+float aux_soma[4][1] = {0};
+float resultado = 99999.9;
+
+float f_quad_x(float arr[1][4])
 {
+    float aux_soma_x[1][1];
+    float res;
 
-    float aux[4][4] = {0};
-    float aux_soma[4][4] = {0};
-    float resultado = 99999.9;
-
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 1; i++)
     {
         for (int j = 0; j < 4; j++)
         {
+            /// printf("\nquad_X %.2f", arr[i][j]);
+            arr[i][j] = pow(arr[i][j], 2);
+            aux_soma_x[0][0] = aux_soma_x[0][0] + arr[i][j];
+
+            //            printf("\n mik %.2f", aux_soma_x[i][j]);
             //ajustar bug
-            aux_soma[i][j] = vetor_x[i][j] + vetor_x[i][j];
-            aux[i][j] = pow(aux_soma[i][j], 2);
-            if (aux[i][j] < resultado)
-            {
-                resultado = aux[i][j];
-            }
+
+            // aux_soma[i][0] += aux[i][j];
+
+            // printf("-------------- \n %.2f", aux_soma[i][0]);
+            // if (aux[i][j] < resultado)
+            // {
+            //     resultado = aux[i][j];
+            // }
+            res = aux_soma_x[0][0];
         }
     }
-    return resultado;
+
+    //printf("RESULTADO correto %.2f", -90 + 98 + 9.88 + 66.4);
+    // printf("\nRESULTADO conta %.2f", res);
+    return res;
 }
 
-int f_quad_pbest()
+/* somar 
+| elemento na linha i todas as posicoes
+|
+*/
+
+float f_quad_pbest(float arr[1][4])
 {
 
-    float aux[4][4] = {0};
-    float aux_soma[4][4] = {0};
-    int resultado = 999999;
+    float aux_soma_x[1][1];
+    float res;
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 1; i++)
     {
         for (int j = 0; j < 4; j++)
         {
-            aux_soma[i][j] = pbest[i][0] + pbest[i][0];
-            aux[i][j] = pow(aux_soma[i][j], 2);
-            if (aux[i][j] < resultado)
-            {
-                resultado = aux[i][j];
-            }
+            // printf("\nquad_X %.2f", arr[0][1]);
+            //arr[i][j] = pow(arr[i][j], 2);
+            arr[i][j] = arr[i][j] * arr[i][j];
+            printf("\ndentro %.2f", arr[i][j]);
+            res = res + arr[i][j];
+
+            //            printf("\n mik %.2f", aux_soma_x[i][j]);
+            //ajustar bug
+
+            // aux_soma[i][0] += aux[i][j];
+
+            // printf("-------------- \n %.2f", aux_soma[i][0]);
+            // if (aux[i][j] < resultado)
+            // {
+            //     resultado = aux[i][j];
+            // }
+            //res = aux_soma_x[0][0];
         }
     }
-    return resultado;
-}
 
+    printf("\nRESULTADO correto %.2f", (-90.00 * -90.00));
+    printf("\nRESULTADO conta %.2f", res);
+    return res;
+}
+int vetor_v[4][4] = {0};
+pbest[0][0] = vetor_x[0][0];
 int main()
 {
-    // float j = (((float)rand() / (float)(RAND_MAX)*5.0) * -1);
-    // float k = (float)rand();
-    //printf("j = %d", j);
-    //    srand((unsigned)time(0));
-    // setlocale(LC_ALL, "Portuguese");
-
-    // vetor_x();
-    // vetor_p();
-    // vetor_v();
-    // int vetor_v[4][4] = {
-    //     {-55, 2, 3, 4},
-    //     {5, 6, 7, 8},
-    //     {9, 10, 11, 12},
-    //     {13, 14, 15, 16},
-    // };
-
     printf("vetor X antes de atualizar\n");
     for (int i = 0; i < 4; i++)
     {
@@ -283,70 +299,104 @@ int main()
         printf("|\n");
     }
 
-    int vetor_v[4][4] = {0};
-
-    // int pbest [4][4]= {
-    //     {0,0,0,0},
-    //     {0,0,0,0},
-    //     {0,0,0,0},
-    //     {0,0,0,0}};
-
-    pbest[0][0] = vetor_x[0][0];
-
-    //atualiza o pbest de casa
-    //O pbest é o melhor de cada linha (vetor)
-
-    printf("pbest %d", f_quad_x());
-
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 1; i++)
     {
-        pbest[i][0] = vetor_x[i][0];
+
         for (int j = 0; j < 4; j++)
         {
-            if (f_quad_x() < f_quad_pbest())
+
+            // float j = (((float)rand() / (float)(RAND_MAX)*5.0) * -1);
+            // float k = (float)rand();
+            //printf("j = %d", j);
+            //    srand((unsigned)time(0));
+            // setlocale(LC_ALL, "Portuguese");
+
+            // vetor_x();
+            // vetor_p();
+            // vetor_v();
+            // int vetor_v[4][4] = {
+            //     {-55, 2, 3, 4},
+            //     {5, 6, 7, 8},
+            //     {9, 10, 11, 12},
+            //     {13, 14, 15, 16},
+            // };
+
+            // int pbest [4][4]= {
+            //     {0,0,0,0},
+            //     {0,0,0,0},
+            //     {0,0,0,0},
+            //     {0,0,0,0}};
+
+            //atualiza o pbest de casa
+            //O pbest é o melhor de cada linha (vetor)
+
+            // printf("pbest %d", f_quad_x());
+
+            for (int i = 0; i < 4; i++)
             {
-                pbest[i][0] = vetor_x[i][j];
+                pbest[i][0] = vetor_x[i][0];
+                for (int j = 0; j < 4; j++)
+                {
+                    if (f_quad_x() < f_quad_pbest())
+                    {
+                        pbest[i][0] = vetor_x[i][j];
+                    }
+
+                    if (pbest[i][j] < melhor())
+                    {
+                        gbest = pbest[i][j];
+                    }
+                }
             }
 
-            if (pbest[i][j] < melhor())
+            //Posicao da particula é por exemplo x linha 0, x linha 1...
+
+            //inicializar o vetor V
+            //
+            //         vetor_v[i][j] = ((2 * 0, 5) * (pbest[i][0] - vetor_x[i][j])) + ((2 * 0, 8) * (gbest - vetor_x[i][j]));
+            //         vetor_x[i][j] = vetor_x[i][j] + vetor_v[i][j];
+            //         // printf("\n aqui vetor x i %d", vetor_x[i][j] + vetor_v[i][j]);
+
+            printf("\n");
+            for (int i = 0; i < 4; i++)
             {
-                gbest = pbest[i][j];
+                printf("pbest[%d]: %.2f\n", i, pbest[i][0]);
             }
+
+            //  printf("\ngbest: %.2f", gbest);
+
+            printf("\n\n");
+            printf("vetor X DEPOIS de atualizar\n");
+            for (int i = 0; i < 4; i++)
+            {
+                printf("vetor_x [%d] - |", i);
+                for (int j = 0; j < 4; j++)
+                {
+                    printf(" %.2f ", vetor_x[i][j]);
+                }
+                printf("|\n");
+            }
+
+            printf("\n\n");
+
+            float arr_x[1][4] = {1, 2, 3, 4};
+            float arr_pbest[1][4] = {1, 2, 3, 4};
+
+            arr_x[i][j] = vetor_x[i][j];
+            arr_pbest[i][j] = pbest[i][j];
+            // if (f_quad_x(arr_x) < f_quad_pbest(arr_pbest))
+            // {
+            //     pbest[i][0] = vetor_x[i][j];
+            // }
         }
     }
 
-    //Posicao da particula é por exemplo x linha 0, x linha 1...
+    printf("\nteste quad %.2f", f_quad_pbest(arr_pbest));
 
-    //inicializar o vetor V
-    for (int i = 0; i < 4; i++)
-    {
-        for (int j = 0; j < 4; j++)
-        {
-            vetor_v[i][j] = ((2 * 0, 5) * (pbest[i][0] - vetor_x[i][j])) + ((2 * 0, 8) * (gbest - vetor_x[i][j]));
-            vetor_x[i][j] = vetor_x[i][j] + vetor_v[i][j];
-            // printf("\n aqui vetor x i %d", vetor_x[i][j] + vetor_v[i][j]);
-        }
-    }
-
-    printf("\n");
-    for (int i = 0; i < 4; i++)
-    {
-        printf("pbest[%d]: %.2f\n", i, pbest[i][0]);
-    }
-
-    printf("\ngbest: %.2f", gbest);
-
-    printf("\n\n");
-    printf("vetor X DEPOIS de atualizar\n");
-    for (int i = 0; i < 4; i++)
-    {
-        printf("vetor_x [%d] - |", i);
-        for (int j = 0; j < 4; j++)
-        {
-            printf(" %.2f ", vetor_x[i][j]);
-        }
-        printf("|\n");
-    }
+    // if (pbest[i][j] < gbest)
+    // {
+    //     gbest = pbest[i][j];
+    // }
 
     return 0;
 }

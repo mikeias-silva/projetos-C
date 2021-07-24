@@ -16,5 +16,13 @@
     "!rust",
     "!scala",
     "!scss"
-  ]
+  ],
+  "files.associations": {
+    ".sequelizerc": "javascript",
+    ".stylelintrc": "json",
+    ".prettierrc": "json",
+    "*.tsx": "typescriptreact",
+    "*.rmd": "markdown",
+    "cmath": "cpp"
+  }
 }
