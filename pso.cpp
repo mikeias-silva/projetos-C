@@ -185,7 +185,7 @@ float vetor_x[4][4] = {
     {-0.913, 0.970, 915, 1},
 };
 
-float pbest[4][1] = {0};
+float pbest[4][1];
 
 float gbest = vetor_x[0][0];
 int melhor()
@@ -284,7 +284,7 @@ float f_quad_pbest(float arr[1][4])
     printf("\nRESULTADO conta %.2f", res);
     return res;
 }
-int vetor_v[4][4] = {0};
+float vetor_v[4][4] = {0};
 pbest[0][0] = vetor_x[0][0];
 int main()
 {
@@ -327,7 +327,7 @@ int main()
             //     {0,0,0,0},
             //     {0,0,0,0}};
 
-            //atualiza o pbest de casa
+            //atualiza o pbest de cada
             //O pbest é o melhor de cada linha (vetor)
 
             // printf("pbest %d", f_quad_x());
