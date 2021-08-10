@@ -45,7 +45,10 @@ float soma = 0;
 
 float aux_x[TAM][X], aux_novo_x[TAM][X];
 
+//pbest é um vetor identico ao X
 float pbest[X];
+
+//Gbest é um vetor do melhor pbest
 float gbest = 9.915;
 
 float global_best()
@@ -134,11 +137,12 @@ int f_vetor_x()
         {
             //    printf("pbest gbest atualizado %f\n", pbest[u] * pbest[u]);
             gbest = pbest[u] * pbest[u];
+            float gbests[] = { 1.82, -2.57, 4.76, -4.58, };
         }
 
         for (int i = 0; i < X; i++)
         {
-            v[u] = ((2 * 0, 5) * (pbest[u] - x[i])) + ((2 * 0, 8) * (gbest - x[i]));
+            v[u] = ((2 * 0,5) * (pbest[u] - x[i])) + ((2 * 0,8) * (gbest - x[i]));
             novo_x[i] = x[i] + v[u];
             aux_novo_x[u][i] = novo_x[i];
             //printf("\n aqui vetor Xi[%d] %.2f", i, novo_x[i]);

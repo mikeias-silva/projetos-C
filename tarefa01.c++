@@ -45,6 +45,7 @@ float soma = 0;
 
 int vetor_x()
 {
+    srand(time(0));
     //Vetor X
     printf("\n%d Vetores de X com %d elementos cada\n", TAM, X);
     for (int u = 0; u <= TAM; u++)
