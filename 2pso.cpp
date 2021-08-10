@@ -46,11 +46,11 @@ float soma = 0;
 float aux_x[TAM][X], aux_novo_x[TAM][X];
 
 //pbest é um vetor identico ao X
-float pbest[X];
+float pbest[X][TAM];
 
 //Gbest é um vetor do melhor pbest
-float gbest = 9.915;
-
+//float gbest[X][TAM] = {0};
+float gbest = 9.99;
 float global_best()
 {
     float res = gbest * gbest;
@@ -85,7 +85,7 @@ float f_novo_x(float arr[])
 int f_vetor_x()
 {
     // Vetor X
-    printf("\n%d Vetores de X com %d elementos cada\n", TAM, X);
+    printf("\n%d Individuos X com %d elementos \n", TAM, X);
     for (int u = 0; u <= TAM; u++)
     {
         for (int i = 0; i < X; i++)
@@ -113,9 +113,12 @@ int f_vetor_x()
         }
         printf("}");
 
-        //inicializa o pbest de cada linha
-        pbest[u] = x[0];
-        printf("\npbest[%.2f]: ", pbest[u]);
+        //inicializa o pbest de cada individuo
+        for (int i = 0; i < X; i++)
+        {
+            pbest[u][i] = x[i];
+            printf("\npbest[%.2f]: ", pbest[u][i]);
+        }
 
         //printf("\n\nVetor ao quadrado: ");
         for (int k = 0; k < X; k++)
@@ -133,20 +136,25 @@ int f_vetor_x()
 
         printf("\nf(x)%d: [%.2f]\n", u, soma);
         //  printf("fglobalbest %.2f\n ", gbest);
-        if (f_pbest(pbest[u]) < gbest)
-        {
-            //    printf("pbest gbest atualizado %f\n", pbest[u] * pbest[u]);
-            gbest = pbest[u] * pbest[u];
-            float gbests[] = { 1.82, -2.57, 4.76, -4.58, };
-        }
+        // if (f_pbest(pbest[u]) < gbest)
+        // {
+        //     //    printf("pbest gbest atualizado %f\n", pbest[u] * pbest[u]);
+        //     gbest = pbest[u] * pbest[u];
+        //     // float gbests[] = {
+        //     //     1.82,
+        //     //     -2.57,
+        //     //     4.76,
+        //     //     -4.58,
+        //     // };
+        // }
 
-        for (int i = 0; i < X; i++)
-        {
-            v[u] = ((2 * 0,5) * (pbest[u] - x[i])) + ((2 * 0,8) * (gbest - x[i]));
-            novo_x[i] = x[i] + v[u];
-            aux_novo_x[u][i] = novo_x[i];
-            //printf("\n aqui vetor Xi[%d] %.2f", i, novo_x[i]);
-        }
+        // for (int i = 0; i < X; i++)
+        // {
+        //     v[u] = ((2 * 0, 5) * (pbest[u] - x[i])) + ((2 * 0, 8) * (gbest - x[i]));
+        //     novo_x[i] = x[i] + v[u];
+        //     aux_novo_x[u][i] = novo_x[i];
+        //     //printf("\n aqui vetor Xi[%d] %.2f", i, novo_x[i]);
+        // }
 
         printf("novo_Xi[%d]", u);
         printf("{");
@@ -157,16 +165,16 @@ int f_vetor_x()
         printf("}");
         printf("\n");
         printf("novo_f(x)%d: [%.2f]\n", u, f_novo_x(novo_x));
-        if ((f_novo_x(novo_x)) < (pbest[u] * pbest[u]))
-        {
+        // if ((f_novo_x(novo_x)) < (pbest[u] * pbest[u]))
+        // {
 
-            pbest[u] = f_novo_x(novo_x);
-            //printf("if teste fx %.2f", f_novo_x(novo_x));
-            if ((pbest[u] * pbest[u]) < gbest)
-            {
-                gbest = pbest[u] * pbest[u];
-            }
-        }
+        //     pbest[u] = f_novo_x(novo_x);
+        //     //printf("if teste fx %.2f", f_novo_x(novo_x));
+        //     if ((pbest[u] * pbest[u]) < gbest)
+        //     {
+        //         gbest = pbest[u] * pbest[u];
+        //     }
+        // }
     }
 
     // for (int t = 0; t < X; t++)
