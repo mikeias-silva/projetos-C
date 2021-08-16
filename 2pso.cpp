@@ -47,6 +47,7 @@ float aux_x[TAM][X], aux_novo_x[TAM][X];
 
 //pbest é um vetor identico ao X
 float pbest[X][TAM];
+float pbestfitness[X];
 
 //Gbest é um vetor do melhor pbest
 //float gbest[X][TAM] = {0};
@@ -117,7 +118,7 @@ int f_vetor_x()
         for (int i = 0; i < X; i++)
         {
             pbest[u][i] = x[i];
-            printf("\npbest[%.2f]: ", pbest[u][i]);
+           // printf("\npbest[%.2f]: ", pbest[u][i]);
         }
 
         //printf("\n\nVetor ao quadrado: ");
@@ -153,7 +154,7 @@ int f_vetor_x()
         //     v[u] = ((2 * 0, 5) * (pbest[u] - x[i])) + ((2 * 0, 8) * (gbest - x[i]));
         //     novo_x[i] = x[i] + v[u];
         //     aux_novo_x[u][i] = novo_x[i];
-        //     //printf("\n aqui vetor Xi[%d] %.2f", i, novo_x[i]);
+        //     printf("\n aqui vetor Xi[%d] %.2f", i, novo_x[i]);
         // }
 
         printf("novo_Xi[%d]", u);
